@@ -1,0 +1,45 @@
+<?php
+echo __FILE__ ; // 取得当前文件的绝对地址，结果：D:\www\test.php
+echo dirname(__FILE__); // 取得当前文件所在的绝对目录，结果：D:\www\
+echo dirname(dirname(__FILE__)); //取得当前文件的上一层目录名，结果：D:\
+?> 
+
+
+js:console.log(JSON.stringify(data));
+	
+php存入数据库前要转义
+PHP htmlspecialchars和htmlspecialchars_decode(函数)
+保存的时候使用addslashes转义，取出来内容的时候用stripslashes反转义
+
+个人整理 ：
+转义：
+        function character($string){
+            return addslashes(htmlspecialchars(strip_tags(trim($string))));
+        }
+还原：       
+		function decharacter($string){
+            return htmlspecialchars_decode(stripslashes($string));
+        }
+
+当删除一条文章的时候，应该把对应的评论一起删掉
+
+
+PHP中自带的strip_tags函数，在过滤数据时会有遗漏。
+例如：
+<style>中的样式内容
+<script>JS 中的代码。
+
+一般在用PHP作采集时，JS和CSS不是我们想要的，如果JS或CSS里面有干扰的内容会影响到strip_tags的效果。
+因此，一般在strip_tags函数处理前，先对JS和CSS进行过滤：
+例如：
+
+<?php
+// 过滤javascript与CSS
+//edit by www.jbxue.com
+$str = preg_replace('#<script[^>]*?>.*?</script>#si','',$str); 
+$str = preg_replace('#<style[^>]*?>.*?</style>#si','',$str); 
+//去除所有html标签
+$str = strip_tags($str);
+?>
+
+经过这样的处理步骤，得到的就是我们想要的最终数据了。

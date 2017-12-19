@@ -1,0 +1,3 @@
+用explode("\n",$data);分割textarea文本域中的换行
+
+用implode("\r\n",$urls);在textarea文本域中显示换行效果

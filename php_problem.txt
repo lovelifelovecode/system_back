@@ -1,0 +1,2 @@
+问题：failed to open stream: Permission denied
+解答：一个runtime文件夹权限问题，二是session文件夹的权限。三是centos系统下的SELinux没关闭。
